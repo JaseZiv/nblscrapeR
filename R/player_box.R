@@ -10,7 +10,7 @@
 #'
 #' @export
 each_player_box <- function(resp) {
-  print(paste0("match id ", resp[["match_id"]]))
+  # print(paste0("match id ", resp[["match_id"]]))
   pl_home <- resp[["tm"]][["1"]][["pl"]]
   
   coerce_to_char <- function(x) {

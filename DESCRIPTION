@@ -1,0 +1,31 @@
+Type: Package
+Package: nblscrapeR
+Title: API wrapper to interact with NBL basketball statistics
+Version: 0.0.1
+Authors@R: c(
+    person("Jason", "Zivkovic", , "jaseziv83@gmail.com", role = c("aut", "cre", "cph"))
+  )
+Description: Allow users to obtain scrape basketball
+    statistics for the Australian basketball leage (NBL).
+License: GPL-3
+URL: https://github.com/JaseZiv/nblscrapeR
+BugReports: https://github.com/JaseZiv/nblscrapeR/issues
+Depends:
+  R (>= 4.0.0)
+Imports:
+    dplyr,
+    httr,
+    jsonlite,
+    magrittr,
+    purrr,
+    rlang,
+    janitor,
+    piggyback,
+    tidyselect
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+Encoding: UTF-8
+RoxygenNote: 7.2.1
+Config/testthat/edition: 3

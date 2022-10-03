@@ -64,7 +64,8 @@ parse_players <- function(resp) {
     pl_df <- pl_df %>% 
       janitor::clean_names() %>% 
       dplyr::select(tidyselect::any_of(c("match_id", "home_away", "pno", "first_name", "family_name", "scoreboard_name", 
-                      "shirt_number")))
+                      "shirt_number"))) %>% 
+      dplyr::distinct()
     
   }
   return(pl_df)

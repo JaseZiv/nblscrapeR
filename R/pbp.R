@@ -1,15 +1,13 @@
 #' Parse pbp data for each game list
 #'
-#' This functions parses each game list and returns a 
-#' data frame of pbp data
+#' Internal function for parse_pbp
 #' 
 #' @param resp list element from scraped json data
 #'
 #' @importFrom magrittr %>%
 #' @importFrom rlang .data
 #' 
-#' @export
-each_pbp <- function(resp) {
+.each_pbp <- function(resp) {
   
   # resp <- resp[[1]]
   
@@ -60,3 +58,33 @@ each_pbp <- function(resp) {
   return(pbp)
   
 }
+
+
+
+#' Parse pbp data for game lists
+#'
+#' This functions parses all game list and returns a 
+#' data frame of pbp data
+#' 
+#' @param resp list element(s) from scraped json data
+#' 
+#' @importFrom magrittr %>%
+#' @importFrom rlang .data
+#'
+#' @export
+parse_pbp <- function(resp) {
+  
+  results_wide <- readRDS(url("https://github.com/JaseZiv/nblr_data/releases/download/match_results/results_wide.rds")) %>% 
+    dplyr::select(.data$match_id, .data$season)
+  
+  out <- resp %>% 
+    purrr::map_df(.each_pbp)
+  
+  out <- out %>% dplyr::distinct() %>%
+    dplyr::left_join(results_wide, by = "match_id") %>%
+    dplyr::select(.data$match_id, .data$season, tidyselect::everything())
+  
+  return(out)
+  
+}
+

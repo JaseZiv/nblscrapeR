@@ -1,15 +1,13 @@
 #' Parse team box score data for each game list
 #'
-#' This functions parses each game list and returns a 
-#' data frame of team box score data
+#' Internal function for parse_team_box
 #' 
 #' @param resp list element from scraped json data
 #' 
 #' @importFrom magrittr %>%
 #' @importFrom rlang .data
 #'
-#' @export
-each_team_box <- function(resp) {
+.each_team_box <- function(resp) {
   # print(paste0("match id ", resp$match_id))
   rems <- c("logoT", "logoS", "pl", "shot", "lds", "scoring")
   
@@ -63,4 +61,33 @@ each_team_box <- function(resp) {
   }
   
   return(df)
+}
+
+
+
+#' Parse team box score data for game lists
+#'
+#' This functions parses all game list and returns a 
+#' data frame of team box score data
+#' 
+#' @param resp list element(s) from scraped json data
+#' 
+#' @importFrom magrittr %>%
+#' @importFrom rlang .data
+#'
+#' @export
+parse_team_box <- function(resp) {
+  
+  results_wide <- readRDS(url("https://github.com/JaseZiv/nblr_data/releases/download/match_results/results_wide.rds")) %>% 
+    dplyr::select(.data$match_id, .data$season)
+  
+  out <- resp %>% 
+    purrr::map_df(.each_team_box)
+  
+  out <- out %>% dplyr::distinct() %>%
+    dplyr::left_join(results_wide, by = "match_id") %>%
+    dplyr::select(.data$match_id, .data$season, tidyselect::everything())
+  
+  return(out)
+  
 }

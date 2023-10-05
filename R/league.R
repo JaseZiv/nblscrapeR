@@ -23,7 +23,7 @@ get_seasons <- function() {
 #' @export
 get_matches <- function(season_id) {
   Sys.sleep(2)
-  match <- .safely_from_json(paste0('https://apicdn.nbl.com.au/nbl/custom/api/genius?route=competitions/', season_id, '/matches'))
+  match <- .safely_from_json(paste0('https://prod.services.nbl.com.au/api_cache/nbl/genius?route=competitions/', season_id, '/matches'))
   match <- match$result$data %>% data.frame()
   return(match)
 }

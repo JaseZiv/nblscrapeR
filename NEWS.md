@@ -1,4 +1,11 @@
-#nblscrapeR 0.0.2
+# nblscrapeR 0.0.2.1000
+
+### Bug
+
+* API for matches changes, causing the change to `get_matches()`
+
+
+# nblscrapeR 0.0.2
 
 ### Improvements
 
@@ -9,6 +16,6 @@
 
 * `parse_match_shot()` to parse shooting coordinate and type data
 
-#nblscrapeR 0.0.1
+# nblscrapeR 0.0.1
 
 * First release

@@ -1,3 +1,10 @@
+# nblscrapeR 0.0.2.2000
+
+### Bug
+
+* API for matches changes, causing the change to `get_matches()`
+
+
 # nblscrapeR 0.0.2.1000
 
 ### Bug

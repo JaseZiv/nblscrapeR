@@ -1,3 +1,11 @@
+# nblscrapeR 0.0.2.3000
+
+### Bug
+
+* API request for `get_matches()` was only getting regular season matches
+
+
+
 # nblscrapeR 0.0.2.2000
 
 ### Bug

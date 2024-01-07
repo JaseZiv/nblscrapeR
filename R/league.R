@@ -42,7 +42,7 @@ get_matches <- function(season_id) {
     `x-quark-req-src` = "web-nbl-nbl"
   )
   
-  match <- httr::GET(url = paste0("https://prod.services.nbl.com.au/api_cache/nbl/genius?route=competitions/", season_id, "/matches&fields=matchId%2Cduration%2CatNeutralVenue%2CextraPeriodsUsed%2Cattendance%2CmatchNumber%2CmatchName%2CleagueId%2CgameNote%2CgameDay%2CcompetitionId%2CroundNumber%2CmatchStatus%2CmatchTime%2CmatchTimeUTC%2CmatchType%2Cvenue%2Ccompetitors&filter%5BmatchType%5D=REGULAR&filter%5BmatchStatus%5D=%21DRAFT&sortBy=matchTimeUTC&filter%5Btenant%5D=nbl"), httr::add_headers(.headers=headers)) |> 
+  match <- httr::GET(url = paste0("https://prod.services.nbl.com.au/api_cache/nbl/genius?route=competitions/", season_id, "/matches&fields=matchId%2Cduration%2CatNeutralVenue%2CextraPeriodsUsed%2Cattendance%2CmatchNumber%2CmatchName%2CleagueId%2CgameNote%2CgameDay%2CcompetitionId%2CroundNumber%2CmatchStatus%2CmatchTime%2CmatchTimeUTC%2CmatchType%2Cvenue%2Ccompetitors&filter%5BmatchStatus%5D=%21DRAFT&sortBy=matchTimeUTC&filter%5Btenant%5D=nbl"), httr::add_headers(.headers=headers)) |> 
     httr::content()
   
   match <- jsonlite::toJSON(match)

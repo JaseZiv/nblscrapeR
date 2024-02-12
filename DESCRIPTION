@@ -1,7 +1,7 @@
 Type: Package
 Package: nblscrapeR
 Title: API wrapper to interact with NBL basketball statistics
-Version: 0.0.2.3000
+Version: 0.0.2.4000
 Authors@R: c(
     person("Jason", "Zivkovic", , "jaseziv83@gmail.com", role = c("aut", "cre", "cph"))
   )

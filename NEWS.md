@@ -1,3 +1,10 @@
+# nblscrapeR 0.0.2.4000
+
+### Bug
+
+* API request for `get_matches()` was not getting all columns, so reverted back to not hard coding selected fields in query
+
+
 # nblscrapeR 0.0.2.3000
 
 ### Bug

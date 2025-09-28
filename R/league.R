@@ -50,3 +50,44 @@ get_matches <- function(season_id) {
   
   return(match)
 }
+
+
+
+#' Scrape NBL season 25-26 fixture
+#'
+#' This function gets games for the 25-26 season
+#' 
+#'
+#' @export
+get_season_matches_df <- function() {
+  headers = c(
+    accept = "*/*",
+    `accept-language` = "en-AU,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
+    `if-none-match` = 'W/"6a06e-SmGRelgnopkYbbOB47kYewX6VLI"',
+    origin = "https://nbl.com.au",
+    priority = "u=1, i",
+    referer = "https://nbl.com.au/",
+    `sec-ch-ua` = '"Chromium";v="140", "Not=A?Brand";v="24", "Google Chrome";v="140"',
+    `sec-ch-ua-mobile` = "?0",
+    `sec-ch-ua-platform` = '"macOS"',
+    `sec-fetch-dest` = "empty",
+    `sec-fetch-mode` = "cors",
+    `sec-fetch-site` = "same-site",
+    `user-agent` = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+  )
+  
+  matches_json <- httr::GET(url = "https://prod.rosetta.nbl.com.au/get/nbl/matches/in/season/2025", httr::add_headers(.headers=headers)) |> 
+    httr::content(as = "text")
+  
+  
+  matches_df <- matches_json |> jsonlite::fromJSON()
+  matches_df <- matches_df$data
+  # matches_df <- matches_df |> unnest(cols = c(home_team, away_team, venue), names_sep = "_")
+  
+  return(matches_df)
+}
+
+
+
+
+
